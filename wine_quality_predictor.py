@@ -18,3 +18,11 @@ X_new = np.array(wine_input).reshape(1, -1)
 predicted_quality = whitemodel.predict(X_new)[0]
 
 print(f"Predicted Wine Quality: {predicted_quality:.2f}")
+
+def predict_white(input):
+    input_new = np.array(input).reshape(1,-1)
+    return whitemodel.predict(input_new)[0]
+
+def predict_red(input):
+    input_new = np.array(input).reshape(1,-1)
+    return redmodel.predict(input_new)[0]
