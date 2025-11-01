@@ -1,4 +1,5 @@
 import streamlit as st
+from wine_quality_predictor import predict_white, predict_red
 
 st.title("Vin-input app 🍷")
 
@@ -38,9 +39,18 @@ st.write(f"**Vintype:** {wine_type}")
 if st.button("Beregn"):
     # Rund av verdier til 2 desimaler
     rounded_inputs = [round(v, 2) for v in inputs]
-    output = round(sum(rounded_inputs), 2)
 
-    st.write(f"**Verdier (11 stk):** {rounded_inputs}")
-    st.success(f"**Output = {output:.2f}**")
+    try:
+        if wine_type == "Hvit":
+            predicted_quality = predict_white(rounded_inputs)
+        else:
+            predicted_quality = predict_red(rounded_inputs)
+
+        st.write(f"**Verdier (11 stk):** {rounded_inputs}")
+        st.success(f"🍷 Predikert vin-kvalitet: {predicted_quality:.2f}")
+
+    except Exception as e:
+        st.error(f"Noe gikk galt under prediksjonen: {e}")
+
 else:
     st.info("Trykk på 'Beregn' for å vise resultatet.")
