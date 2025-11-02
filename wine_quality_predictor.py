@@ -1,8 +1,8 @@
 import joblib
 import numpy as np
 
-whitemodel = joblib.load("white_wine_quality_model.pkl")
-redmodel = joblib.load("red_wine_quality_model.pkl")
+whitemodel = joblib.load("./models/white_wine_quality_model.pkl")
+redmodel = joblib.load("./models/red_wine_quality_model.pkl")
 
 
 def predict_white(input):
